@@ -16,8 +16,10 @@ app.use((req, res, next) => {
   const start = process.hrtime()
 
   res.on('close', () => {
-    const durationInMilliseconds = getDurationInMilliseconds(start)
-    console.log(`${day} ${time} | ${req.method} from ${req.originalUrl} | total time: ${durationInMilliseconds .toLocaleString()} ms`)
+    if (!(req.originalUrl == '/favicon.ico')) {
+      const durationInMilliseconds = getDurationInMilliseconds(start)
+      console.log(`${day} ${time} | ${req.method} from ${req.originalUrl} | total time: ${durationInMilliseconds .toLocaleString()} ms`)
+    }
   })
 
   next()
