@@ -1,4 +1,4 @@
-const express = require('express')
+﻿const express = require('express')
 const app = express()
 const port = 3000
 
@@ -15,8 +15,8 @@ app.use((req, res, next) => {
   var time = d.toString().slice(16, 24);
   const start = process.hrtime()
 
-  res.on('close', () => {
-    if (!(req.originalUrl == '/favicon.ico')) {
+  res.on('finish', () => {
+    if (req.originalUrl !== '/favicon.ico') {
       const durationInMilliseconds = getDurationInMilliseconds(start)
       console.log(`${day} ${time} | ${req.method} from ${req.originalUrl} | total time: ${durationInMilliseconds .toLocaleString()} ms`)
     }
